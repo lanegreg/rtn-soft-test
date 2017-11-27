@@ -1,0 +1,140 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Feed Me</title>
+    <meta name="description" content="RSS ">
+    <meta name="author" content="RoadTripNation">
+
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+
+    <script language="javascript">
+
+      var feed = 'https://queryfeed.net/twitter?q=javascript';
+
+      /** HOMEWORK INSTRUCTIONS **/
+      /**
+        *   Consume a feed of tweets and display them in cards using javascript. (~90 minutes)
+        * 
+        *   1. Load the feed URL above, results on page load, replacing the content cards in the .feed container
+        *   2. Change the feed when the .query input field is changed, display an indicator
+        *   3. Make the date/time value human readable
+        *   4. Wire up the .close span tag to hide its card on click
+        * 
+        *   (bonus)
+        *   5. The feed results are cached server side.  Force them to update on a timer and refresh
+        *      the page content when it is different.
+        *   6. Allow cards to display responsively on desktop and mobile.
+        *
+        */    
+
+    </script>
+
+    <!-- HOMEWORK BEGIN - Write your code here: -->
+    <script language='javascript'>
+    </script>
+    <style>
+    </style>
+    <!-- HOMEWORK END -->
+
+    <style>
+      body { 
+        padding: 0 0 0 0; 
+        margin: 0 0 0 0; 	
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+      }
+      .theme-l4 {
+        color:#000; 
+        background-color:#dfe5e8 
+      }
+      .theme-d4 {
+        color:#fff; 
+        background-color:#3a4b53 
+      }
+      .card { 
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        padding: 0.01em 16px; 
+        margin-top: 16px; 
+        margin-bottom: 16px;
+        color: #000; 
+        background-color: #fff; 
+        position: relative; 
+      }
+      .container { 
+        max-width: 600px; 
+        min-width: 400px; 
+        margin: 40px auto; 
+      }
+      .display-topright { 
+        position: absolute; 
+        right: 0; top: 0; 
+      }
+      .padding { 
+        padding: 8px 16px; 
+      }
+      .large { 
+        font-size: 18px; 
+      }
+      .bar { 
+        width: 100%; 
+        overflow: hidden; 
+        padding: 5px 20px; 
+      }
+      .query-form input { 
+        font-size: 24pt; 
+        max-width: 100%; 
+        padding: 5px 15px; 
+      }
+      .media img { 
+        max-height: 120px; 
+      }
+      .date { 
+        font-style: italic; font-size: 9pt; 
+      }
+    </style>
+  </head>
+
+  <body class="theme-l4">
+
+    <div class="bar large theme-d4">
+      <span class="bar-item">FEED ME</span>
+    </div>
+
+    <div class="container content">
+
+      <form class="query-form">
+        <input type="text" class="query" value="javascript">
+      </form>
+
+      <div class="feed">
+        
+        <div class="card">
+          <span class="display-topright padding close">X</span>
+          <p class="author"><b>Brittney Bond @_KarimaTounsya</b></p>
+          <p class="media"><img src="http://pbs.twimg.com/media/C65R5ulVAAAfngj.jpg"></p>
+          <p class="description">Angular Radial Color Picker <a href="http://ift.tt/2mUijWG">ift.tt/2mUijWG</a> https://t.co/HZvuixVwVB</p>
+          <p class="date">Thu, 23 Mar 2017 at 2:09pm</p>
+        </div>
+
+        <div class="card">
+          <span class="display-topright padding close">X</span>
+          <p class="author"><b>Mangesh Tekale @_mangesh_tekale</b></p>
+          <p class="description">Modern JavaScript for Ancient Web Developers <a href="https://trackchanges.postlight.com/modern-javascript-for-ancient-web-developers-58e7cae050f9#.2tpky4xfc">trackchanges.postlight.com/modern-javascr…</a></p>
+          <p class="date">Thu, 23 Mar 2017 at 2:01pm</p>
+        </div>
+
+        <div class="card">
+          <span class="display-topright padding close">X</span>
+          <p class="author"><b>Harry Tormey @htormey</b></p>
+          <p class="media"><img src="http://pbs.twimg.com/media/C7nmxwuVMAAw9aZ.jpg"></p>
+          <p class="description">RT <a href="https://twitter.com/ChainReactConf">@ChainReactConf</a>: "When to Go Native Over Javascript"? <a href="https://twitter.com/htormey">@htormey</a> has the answers in his talk at <a href="https://twitter.com/hashtag/chainreact2017">#chainreact2017</a>! https://t.co/l3qD9Q2Zfn</p>
+          <p class="date">Thu, 23 Mar 2017 at 1:50pm</p>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
