@@ -65,8 +65,13 @@ io.on('connection', socket => {
     const idx = tids.findIndex(item => item.socketId === socket.id)
     //- if we find an object in the tids array, for this 
     //- socket_id, stop the corresponding recurring search
-    tids[idx] && clearInterval(tids[idx].tid) 
-    tids.splice(idx,1) //- remove object from array
+    if(tids[idx]) {
+      clearInterval(tids[idx].tid)
+
+      //- remove object from array
+      tids.splice(idx,1)
+    }
+    
 
     sendTweetsUpdate(query, socket.id)
 
