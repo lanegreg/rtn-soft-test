@@ -17,7 +17,7 @@ const express = require('express'),
       less = require('less-middleware'),
       crypto = require('crypto'),
       fetch = require('node-fetch'),
-			parseString = require('xml2js').parseString,
+			{ parseString } = require('xml2js'),
       bluebird = require('bluebird'),
       redis = require('redis'),
       redcli = redis.createClient({ port: 6379, host: '127.0.0.1' }),
@@ -34,7 +34,7 @@ redcli.on('error', error => {
   console.log(`Error: ${error}`)
 })
 
-//- setup socket.io and interval querying
+//- setup socket.io events/emits, and store some state in redis
 io.on('connection', socket => {
 	console.log(`connected with socket id: ${socket.id}`)
   
@@ -63,17 +63,21 @@ io.on('connection', socket => {
 
     //- since this is a client-side call, clear previous interval if exists
     const idx = tids.findIndex(item => item.socketId === socket.id)
-    clearInterval(tids[idx])
+    //- if we find an object in the tids array, for this 
+    //- socket_id, stop the corresponding recurring search
+    tids[idx] && clearInterval(tids[idx].tid) 
     tids.splice(idx,1) //- remove object from array
 
     sendTweetsUpdate(query, socket.id)
 
-    //- set interval for changed tweets update
+    //- establish a recurring search cycle to check for 
+    //- changed tweets, for a given socket_id/query combination
     let tid = setInterval(() => {
       sendTweetsUpdate(query, socket.id)
     }, (REFETCH_INTERVAL_IN_SECS * 1000))
 
-    //- save timer_id so that we can kill the setInterval query when a client-side search is reissued
+    //- save timer_id so that we can kill the setInterval 
+    //- query when a client-side search is reissued
     tids.push({ socketId: socket.id, tid })
   })
 })
@@ -85,9 +89,10 @@ app.use(less('client/public'))
 app.use(express.static('client/public'))
 
 
-//- this route handles api call for querying tweets (the original way before socket.io)
+//- this route handles api call for querying tweets 
+//- (the original way before adding socket.io)
 app.get('/api/twt/qry/:q', (req, res) => {
-	fetchTweets(req.params.q, cards => res.send(cards))
+	fetchTweets(req.params.q, tweets => res.send(tweets))
 })
 
 
@@ -108,7 +113,7 @@ http.listen(app.get('port'), () => {
 /**
  *  - helper functions -
  */
-const fetchTweets = (query, cb) => {
+const fetchTweets = (query, callback) => {
 	url = `https://queryfeed.net/twitter?q=%23${query}&title-type=user-name-both&attach=on`
 	console.log(url)
 
@@ -137,7 +142,7 @@ const fetchTweets = (query, cb) => {
 				})
 			}
 
-			cb(tweets)
+			callback(tweets)
 		})
 	)
 }

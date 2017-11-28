@@ -6,7 +6,8 @@ import Card from './Card'
 import Spinner from './Spinner'
 
 
-const formatDate = date => `${date.toDateString().replace(' ',', ')} at ${date.toLocaleTimeString().toLowerCase()}`
+const formatDate = date => 
+	`${date.toDateString().replace(' ',', ')} at ${date.toLocaleTimeString().toLowerCase()}`
 
 
 class App extends Component {
@@ -104,7 +105,6 @@ class App extends Component {
 				</div>
 				<div className="container">
           <span>fetched on: {this.state.fetchedOn}</span>
-					{this.props.timestamp}
 					{this.state.querying && <Spinner />}
 					<div className="container-fluid">
 						{this.state.tweets.map(tweet => <Card key={tweet.id} tweet={tweet} />)}
