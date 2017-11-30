@@ -1,17 +1,37 @@
-# FEED ME
+## Feed Me Tweets
 
-## Description
-    
-Consume a feed of tweets and display them in cards using javascript in the provided feedme.html file. (~90 minutes)
+The primary files to take notice of are:
+* **_server.js_**
+* **_./client/src/App.js_**
+* **_./client/src/Card.js_**
+* **_./client/src/services/api.js_**
 
-## Instructions
+> I chose to use redis to store server-side state. I am using socket.io to push new updates to the frontend if there is a change detected in tweets, per query/socket_id. Change is detected by concatenating the tweet guids and then hashing them. The old hash and the new hash are then compared.
 
-1. Load the feed url provided in the feedme.html file results on page load, replacing the content cards in the .feed container
-2. Change the feed when the .query input field is changed, display an indicator while fetching
-3. Make the date/time value human readable
-4. Wire up the .close span tag to hide its card on click
 
-### Bonus
+## StudentsDB
 
-5. The feed results are cached server side.  Force them to update on a timer and refresh the page content when it is different.
-6. Allow cards to display responsively on desktop and mobile.
+The script file can also be found in the **_./db_sripts/StudentsDB__scripts.sql_** file.
+
+
+## Shuffle Interview Question
+
+The shuffle function can be found in the **_./shuffle_func_solution/shuffle.js_**.
+
+    const shuffle = arr => {
+      const randomIndexes = [],
+            arrLength = arr.length
+
+      while(randomIndexes.length < arrLength) {
+        let idx = Math.floor((Math.random() * arrLength) + 1)
+      
+        if(!randomIndexes.find(item => item === idx)) {
+          randomIndexes.push(idx)
+        }
+      }
+
+      return randomIndexes.map(idx => arr[idx-1])
+    }
+
+
+    shuffle(['one','two','three','four','five']) // => ["two", "three", "one", "five", "four"]
