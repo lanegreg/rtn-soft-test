@@ -1,10 +1,9 @@
 
 const shuffle = arr => {
-  const randomIndexes = [],
-        arrLength = arr.length
+  const randomIndexes = []
 
-  while(randomIndexes.length < arrLength) {
-    let idx = Math.floor((Math.random() * arrLength) + 1)
+  while(randomIndexes.length < arr.length) {
+    let idx = Math.floor((Math.random() * arr.length) + 1)
   
     if(!randomIndexes.find(item => item === idx)) {
       randomIndexes.push(idx)
